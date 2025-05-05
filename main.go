@@ -2,13 +2,14 @@ package main
 
 import (
 	"github/ertush/gorest/database"
+	"github/ertush/gorest/middleware"
 	"github/ertush/gorest/views"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func loadviews(app *fiber.App) {
+func loadViews(app *fiber.App) {
 
 	// User Routes
 
@@ -34,7 +35,9 @@ func main() {
 
 	app := fiber.New()
 
-	loadviews(app)
+	middleware.UseAuth(app)
+
+	loadViews(app)
 
 	log.Fatalln(app.Listen(":4000"))
 }
