@@ -15,7 +15,7 @@ type Product struct {
 }
 
 func CreateResponseProduct(product models.Product) serializers.Product {
-	return serializers.Product{ID: product.ID, Name: product.Name, SerialNumber: product.SerialNumber}
+	return serializers.Product{ID: product.ID, Name: product.Name, SerialNumber: product.SerialNumber, User: product.UserRefer}
 }
 
 func CreateProduct(c *fiber.Ctx) error {
