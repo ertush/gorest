@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 
-	"gorm.io/driver/sqlite"
+	"github.com/lpernett/godotenv"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	// "gorm.io/gorm/logger"
 )
 
 type DbInstance struct {
@@ -19,9 +19,14 @@ var Database DbInstance
 
 func ConnectDB() {
 
-	db, err := gorm.Open(sqlite.Open("rest.db"), &gorm.Config{})
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-	// log.Printf("Db: %v\n", db)
+	dsn := os.Getenv("DATABASE_URL")
+
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		log.Fatalln("Unable to Connect to DB")
