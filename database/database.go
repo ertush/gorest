@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/lpernett/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -19,10 +18,12 @@ var Database DbInstance
 
 func ConnectDB() {
 
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// if os.Getenv("APP_ENV") == "development" {
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
+	// }
 
 	dsn := os.Getenv("DSN")
 
