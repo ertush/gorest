@@ -1,4 +1,4 @@
-package views
+package router
 
 import (
 	"github/ertush/gorest/database"

@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github/ertush/gorest/views"
+	"github/ertush/gorest/router"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -26,7 +26,7 @@ func UseAuth(app *fiber.App) {
 			return false
 		},
 		Unauthorized: func(c *fiber.Ctx) error {
-			return c.Status(401).JSON(views.ResponseError{Message: "Unauthorized User"})
+			return c.Status(401).JSON(router.ResponseError{Message: "Unauthorized User"})
 		},
 		ContextUsername: "_user",
 		ContextPassword: "_pass",
